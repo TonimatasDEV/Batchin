@@ -1,8 +1,10 @@
 package main
 
 import (
-	"fmt"
+	"batch-interpreter/internal"
+	"batch-interpreter/internal/util"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -12,5 +14,13 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(string(content))
+	lines := strings.Split(string(content), "\n")
+
+	for _, line := range lines {
+		if util.IsBlank(line) {
+			continue
+		}
+
+		internal.ExecuteFunc(line)
+	}
 }
