@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	content, err := os.ReadFile("Ejercicio1.bat")
+	content, err := os.ReadFile("example.bat")
 
 	if err != nil {
 		panic(err)

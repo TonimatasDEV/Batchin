@@ -23,6 +23,8 @@ func ExecuteFunc(line string) {
 		commands.PrintEcho(args)
 	case "set":
 		commands.Set(args)
+	case "pause":
+		commands.ExecutePause()
 	default:
 		panic("Unknown command: " + command)
 	}
