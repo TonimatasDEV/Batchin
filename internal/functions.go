@@ -6,7 +6,7 @@ import (
 )
 
 func ExecuteFunc(line string) {
-	lineSplit := strings.SplitN(line, " ", 1)
+	lineSplit := strings.SplitN(line, " ", 2)
 	command := lineSplit[0]
 	args := ""
 
@@ -15,9 +15,15 @@ func ExecuteFunc(line string) {
 	}
 
 	switch command {
+	case "Rem":
+		break
 	case "@echo":
-		panic("Not implemented yet")
+		commands.SetEcho(args)
+	case "echo":
+		commands.PrintEcho(args)
 	case "set":
 		commands.Set(args)
+	default:
+		panic("Unknown command: " + command)
 	}
 }
