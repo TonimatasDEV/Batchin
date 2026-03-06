@@ -1,25 +1,48 @@
 package commands
 
-import "strings"
+import (
+	"bufio"
+	"os"
+	"strings"
+)
 
-var vars = make(map[string]any)
+var vars = make(map[string]string)
 
 func Set(args string) {
-	parameter := ""
-
-	if strings.HasPrefix(args, "/") {
-		rawParameter := strings.Split(args, " ")[0]
-		parameter = strings.ToLower(rawParameter)
-	}
+	parameter, rawVariable := getData(args)
+	name, value := getVariable(rawVariable)
 
 	switch parameter {
 	case "/a":
-		panic("Not implemented yet")
+		vars[name] = value
 	case "/p":
-		panic("Not implemented yet")
-	case "":
-		panic("Not implemented yet")
+		print(value)
+		scanner := bufio.NewScanner(os.Stdin)
+		if scanner.Scan() {
+			line := scanner.Text()
+			vars[name] = line
+		}
 	default:
 		panic("Unknown parameter: " + parameter)
 	}
+}
+
+func getData(args string) (parameter string, rawVariable string) {
+	if strings.HasPrefix(args, "/") {
+		rawParameter := strings.SplitN(args, " ", 2)
+		parameter = strings.ToLower(rawParameter[0])
+		rawVariable = rawParameter[1]
+	} else {
+		rawVariable = args
+	}
+
+	return parameter, rawVariable
+}
+
+func getVariable(rawVariable string) (name string, value string) {
+	variableSplit := strings.SplitN(rawVariable, "=", 2)
+
+	name = strings.ToLower(variableSplit[0])
+	value = variableSplit[1]
+	return name, value
 }
