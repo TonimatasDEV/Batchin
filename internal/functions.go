@@ -5,8 +5,6 @@ import (
 	"strings"
 )
 
-var vars = make(map[string]string)
-
 func ExecuteFunc(line string) {
 	lineSplit := strings.SplitN(line, " ", 2)
 	command := lineSplit[0]
@@ -24,7 +22,7 @@ func ExecuteFunc(line string) {
 	case "echo":
 		commands.PrintEcho(args)
 	case "set":
-		vars = commands.Set(args, vars)
+		commands.Set(args)
 	default:
 		panic("Unknown command: " + command)
 	}

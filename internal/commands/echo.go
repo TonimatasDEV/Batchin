@@ -1,9 +1,11 @@
 package commands
 
-var Echo = true
+import "batch-interpreter/internal/variables"
 
 func SetEcho(args string) {
-	Echo = args == "on"
+	if args == "off" {
+		variables.EchoOff()
+	}
 }
 
 func PrintEcho(args string) {
