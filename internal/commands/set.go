@@ -6,9 +6,7 @@ import (
 	"strings"
 )
 
-var vars = make(map[string]string)
-
-func Set(args string) {
+func Set(args string, vars map[string]string) map[string]string {
 	parameter, rawVariable := getData(args)
 	name, value := getVariable(rawVariable)
 
@@ -25,6 +23,8 @@ func Set(args string) {
 	default:
 		panic("Unknown parameter: " + parameter)
 	}
+
+	return vars
 }
 
 func getData(args string) (parameter string, rawVariable string) {
