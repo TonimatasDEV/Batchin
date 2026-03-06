@@ -2,6 +2,7 @@ package main
 
 import (
 	"batch-interpreter/internal"
+	"batch-interpreter/internal/commands"
 	"batch-interpreter/internal/util"
 	"os"
 	"strings"
@@ -16,8 +17,14 @@ func main() {
 
 	lines := strings.Split(string(content), "\n")
 
+	ifRequireLine := false
 	for _, line := range lines {
 		if util.IsBlank(line) {
+			continue
+		}
+
+		if commands.IsIf(line) || ifRequireLine {
+			ifRequireLine = commands.ExecuteIf(line)
 			continue
 		}
 
