@@ -18,9 +18,9 @@ func ExecuteFunc(line string) {
 	case "Rem":
 		break
 	case "@echo":
-		commands.SetEcho(args)
+		commands.ExecuteEcho(args)
 	case "echo":
-		commands.PrintEcho(args)
+		commands.ExecuteEcho(args)
 	case "set":
 		commands.Set(args)
 	case "pause":

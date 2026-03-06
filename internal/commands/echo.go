@@ -1,13 +1,30 @@
 package commands
 
-import "batch-interpreter/internal/variables"
+import (
+	"batch-interpreter/internal/variables"
+	"strings"
+)
 
-func SetEcho(args string) {
-	if args == "off" {
-		variables.EchoOff()
+func ExecuteEcho(args string) {
+	argsSplit := strings.Split(args, " ")
+
+	if args == "" {
+		if variables.Echo {
+			println("ECHO is enabled.")
+		} else {
+			println("ECHO is disabled.")
+		}
+	} else if len(argsSplit) == 1 {
+		noSpacePlease := strings.TrimSpace(argsSplit[0])
+
+		if noSpacePlease == "on" {
+			variables.Echo = true
+		} else if noSpacePlease == "off" {
+			variables.Echo = false
+		} else {
+			println(args)
+		}
+	} else {
+		println(args)
 	}
-}
-
-func PrintEcho(args string) {
-	println(args)
 }

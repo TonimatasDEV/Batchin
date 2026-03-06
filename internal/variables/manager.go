@@ -34,7 +34,3 @@ func SetRawVariable(rawVariable string) {
 	value := variableSplit[1]
 	variables[name] = value
 }
-
-func EchoOff() {
-	Echo = false
-}
