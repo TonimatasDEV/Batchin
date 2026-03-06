@@ -7,7 +7,7 @@ import (
 
 func ExecuteFunc(line string) {
 	lineSplit := strings.SplitN(line, " ", 2)
-	command := lineSplit[0]
+	command := strings.TrimSpace(lineSplit[0])
 	args := ""
 
 	if len(lineSplit) > 1 {
@@ -25,6 +25,8 @@ func ExecuteFunc(line string) {
 		commands.Set(args)
 	case "pause":
 		commands.ExecutePause()
+	case "cls":
+		commands.ExecuteCLS()
 	default:
 		panic("Unknown command: " + command)
 	}
