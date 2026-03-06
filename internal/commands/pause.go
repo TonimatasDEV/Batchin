@@ -8,15 +8,15 @@ import (
 )
 
 func ExecutePause() {
-	println("Press any key to continue...")
-
 	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
 
 	if err != nil {
-		println("Error reading raw terminal. Waiting 1 second instead.")
+		println("Error pausing. Waiting 1 second instead.")
 		time.Sleep(1 * time.Second)
 		return
 	}
+
+	println("Press any key to continue...")
 
 	var b = make([]byte, 1)
 	_, _ = os.Stdin.Read(b)
