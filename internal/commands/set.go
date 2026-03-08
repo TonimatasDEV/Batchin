@@ -12,6 +12,7 @@ func Set(args string) {
 
 	switch parameter {
 	case "/a":
+		variable
 		variables.SetRawVariable(rawVariable)
 	case "/p":
 		scanner := bufio.NewScanner(os.Stdin)

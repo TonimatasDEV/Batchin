@@ -34,3 +34,8 @@ func SetRawVariable(rawVariable string) {
 	value := variableSplit[1]
 	variables[name] = value
 }
+
+func IsEquation(value string) bool {
+	equationRegex :=
+	return len(value) > 0
+}

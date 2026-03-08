@@ -1,7 +1,10 @@
 package operators
 
-func calculate(vars map[string]string) {
-	// TODO: Read expressions %var1%+%var2%*%var3%
+import "strings"
+
+func calculate(equation string) {
+	equation = strings.TrimSpace(equation)
+	strings.Count(equation, "=")
 }
 
 func operation(operator string, x, y int) int {
