@@ -12,14 +12,17 @@ func Set(args string) {
 
 	switch parameter {
 	case "/a":
-		variable
 		variables.SetRawVariable(rawVariable)
 	case "/p":
+		name, value := variables.GetRawVariable(rawVariable)
+		toPrint := strings.ReplaceAll(value, "\r", "")
+		print(toPrint)
+
 		scanner := bufio.NewScanner(os.Stdin)
 
 		if scanner.Scan() {
 			line := scanner.Text()
-			variables.SetRawVariable(line)
+			variables.SetVariable(name, line)
 		}
 
 		if scanner.Err() != nil {
