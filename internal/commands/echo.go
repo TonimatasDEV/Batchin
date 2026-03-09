@@ -22,9 +22,11 @@ func ExecuteEcho(args string) {
 		} else if noSpacePlease == "off" {
 			variables.Echo = false
 		} else {
-			println(args)
+			parsedArgs := variables.ParseLine(args)
+			println(parsedArgs)
 		}
 	} else {
-		println(args)
+		parsedArgs := variables.ParseLine(args)
+		println(parsedArgs)
 	}
 }

@@ -8,9 +8,18 @@ import (
 var variables = make(map[string]string)
 var Echo = true
 
-func ParseVariable(percentageName string) string {
-	nameWithoutPercentage := strings.ReplaceAll(percentageName, "%", "")
-	return variables[nameWithoutPercentage]
+func ParseLine(line string) string {
+	for name := range variables {
+		line = ParseVariable(line, name)
+	}
+
+	return line
+}
+
+func ParseVariable(line, varName string) string {
+	toReplace := "%" + varName + "%"
+	replacement := variables[varName]
+	return strings.ReplaceAll(line, toReplace, replacement)
 }
 
 func GetVariable(name string) string {
