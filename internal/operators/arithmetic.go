@@ -1,25 +1,24 @@
 package operators
 
-import "strings"
+import (
+	"fmt"
 
-func calculate(equation string) {
-	equation = strings.TrimSpace(equation)
-	strings.Count(equation, "=")
-}
+	"github.com/Knetic/govaluate"
+)
 
-func operation(operator string, x, y int) int {
-	switch operator {
-	case "+":
-		return x + y
-	case "-":
-		return x - y
-	case "*":
-		return x * y
-	case "/":
-		return x / y
-	case "%":
-		return x % y
-	default:
-		panic("unknown operator: " + operator)
+/*
+Calculate returns the result of the expression or the same input string if the expressions is not correct.
+*/
+func Calculate(expression string) string {
+	exp, err := govaluate.NewEvaluableExpression(expression)
+	if err != nil {
+		return expression
 	}
+
+	result, err := exp.Evaluate(nil)
+	if err != nil {
+		panic(err)
+	}
+
+	return fmt.Sprintf("%v", result)
 }
