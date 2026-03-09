@@ -27,6 +27,8 @@ func ExecuteFunc(line string) {
 		commands.ExecutePause()
 	case "cls":
 		commands.ExecuteCLS()
+	case "exit":
+		commands.ExecuteExit(args)
 	default:
 		panic("Unknown command: " + command)
 	}
