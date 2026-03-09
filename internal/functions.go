@@ -11,7 +11,7 @@ func ExecuteFunc(line string) {
 	args := ""
 
 	if len(lineSplit) > 1 {
-		args = lineSplit[1]
+		args = strings.TrimSuffix(lineSplit[1], "\r")
 	}
 
 	switch command {

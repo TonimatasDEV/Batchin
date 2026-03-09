@@ -19,8 +19,7 @@ func Set(args string) {
 		variables.SetVariable(name, result)
 	case "/p":
 		name, value := variables.GetRawVariable(rawVariable)
-		toPrint := strings.ReplaceAll(value, "\r", "")
-		print(toPrint)
+		print(value)
 
 		scanner := bufio.NewScanner(os.Stdin)
 
