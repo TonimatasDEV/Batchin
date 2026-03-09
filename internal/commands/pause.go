@@ -16,9 +16,11 @@ func ExecutePause() {
 		return
 	}
 
-	println("Press any key to continue...")
+	print("Press any key to continue...")
 
 	var b = make([]byte, 1)
 	_, _ = os.Stdin.Read(b)
 	_ = term.Restore(int(os.Stdin.Fd()), oldState)
+
+	println()
 }
