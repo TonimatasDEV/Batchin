@@ -31,6 +31,9 @@ func Set(args string) {
 		if scanner.Err() != nil {
 			panic(scanner.Err())
 		}
+	case "":
+		name, value := variables.GetRawVariable(rawVariable)
+		variables.SetVariable(name, value)
 	default:
 		panic("Unknown parameter: " + parameter)
 	}
