@@ -2,6 +2,7 @@ package internal
 
 import (
 	"batch-interpreter/internal/commands"
+	"batch-interpreter/internal/variables"
 	"strings"
 )
 
@@ -12,6 +13,10 @@ func ExecuteFunc(line string) {
 
 	if len(lineSplit) > 1 {
 		args = lineSplit[1]
+	}
+
+	if variables.Echo && !strings.Contains(line, "@echo off") {
+		println(line)
 	}
 
 	switch command {
